@@ -1,0 +1,27 @@
+<!-- blog/templates/blog/post_list.html -->
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class=" border-left-info shadow py-2">
+
+            <h2 class="text-info-emphasis list-group-item text-center p-3 text-primary"
+                style="background-color: #e3f2fd;">Log In</h2>
+
+           <div class="form-group mx-auto" style="width: 200px;" >
+                <form method="POST" class="p-10">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div style="text-align: center; margin-top: 20px;"> <!-- Center the button and add margin -->
+                            <button class="btn btn-secondary" style="margin-top: 20px;">Register</button>
+                        </div>
+                    </form>
+           </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

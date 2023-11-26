@@ -1,0 +1,41 @@
+<!-- blog/templates/blog/post_list.html -->
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1 class="text-primary bg-light py-2 mb-4">Post List</h1>
+    {% for post in posts %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    {% if post.image %}
+                        <a href="{% url 'detail_page' post.pk %}">
+                            <img src="{{ post.image.url }}" alt="{{ post.title }} Image"
+                                 class="img-fluid rounded-start">
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title"><a href="{% url 'detail_page' post.pk %}">{{ post.title }}</a></h2>
+                        <!--                <p class="card-text"><small class="text-muted">Author: {{ post.author }}</small></p>-->
+                        <p class="card-text"><small class="text-muted">Author: {{ post.author_name }}</small></p>
+                        <p class="card-text">{{ post.content }}</p>
+                        <p class="card-text"><small class="text-muted">Created on: {{ post.created_on }}</small></p>
+                        <p class="card-text"><small class="text-muted">Updated on: {{ post.updated_on }}</small></p>
+
+                        {% if user.is_authenticated %}
+                            {% if user.id == post.author.id %}
+                                <a href="{% url 'edit_post' pk=post.pk %}" class="btn btn-primary btn-sm text-white"
+                                   role="button">Edit</a>
+                                <a href="{% url 'delete_page' pk=post.pk %}" class="btn btn-danger btn-sm text-white"
+                                   role="button">Delete</a>
+                            {% endif %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

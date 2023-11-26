@@ -1,0 +1,26 @@
+<!-- blog/templates/blog/post_list.html -->
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="border-left-info shadow py-2">
+            <h2 class="text-info-emphasis list-group-item p-3 text-center text-primary" style="background-color: #e3f2fd; ">Edit the post</h2>
+            <div class="card m-3">
+                <div class="card-body p-3 d-flex justify-content-center">
+                    <form method="POST" enctype="multipart/form-data" class="w-100">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center "> <!-- Center the button -->
+                            <button type="submit" class="btn bg-primary text-white btn-lg w-25"> <!-- Larger button -->
+                                Edit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!-- blog/templates/blog/post_list.html -->
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="border-left-info shadow py-2">
+            <h2 class="text-info-emphasis list-group-item p-3 text-center text-primary"
+                style="background-color: #e3f2fd; ">Are you sure do you want to delete the post?
+                <a class="text-dark" href="{% url 'detail_page' post.pk %}">
+                    "{{ post.title }}"</a></h2>
+            <div class="card-body d-flex justify-content-around ">
+                <form action="{% url 'delete_page' post.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Confirm" class="btn btn-danger btn-lg"/>
+                    <a href="{% url 'post_list' %}" class="btn btn-secondary btn-lg">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
